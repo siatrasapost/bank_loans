@@ -1,8 +1,11 @@
 package com.siatrasapost.demo_bank.controllers;
 
+import com.siatrasapost.demo_bank.entities.Client;
 import com.siatrasapost.demo_bank.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/user")
@@ -13,6 +16,11 @@ public class ClientController {
     @Autowired
     public ClientController(ClientService clientService){
         this.clientService = clientService;
+    }
+
+    @GetMapping
+    public List<Client> getClients(){
+        return clientService.getClients();
     }
 
     @PostMapping
