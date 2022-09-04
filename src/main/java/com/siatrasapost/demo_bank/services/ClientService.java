@@ -1,4 +1,4 @@
-package com.siatrasapost.demo_bank.clients;
+package com.siatrasapost.demo_bank.services;
 
 import org.springframework.stereotype.Service;
 

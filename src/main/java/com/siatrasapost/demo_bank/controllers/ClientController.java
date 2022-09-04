@@ -1,10 +1,11 @@
-package com.siatrasapost.demo_bank.clients;
+package com.siatrasapost.demo_bank.controllers;
 
+import com.siatrasapost.demo_bank.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/users/client")
+@RequestMapping(path = "/user")
 public class ClientController {
 
     private final ClientService clientService;
