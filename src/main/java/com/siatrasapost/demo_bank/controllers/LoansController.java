@@ -29,25 +29,25 @@ public class LoansController {
         this.loansService = loansService;
     }
 
-    @GetMapping
-    @ResponseBody
-    public List<LoanDTO> getLoans(){
-        List<Loans> loans = loansService.getLoans();
-        return loans.stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
-    }
-
-    private LoanDTO convertToDTO(Loans loan){
-        return modelMapper.map(loan, LoanDTO.class);
-    }
-
-    private Loans convertToEntity(LoanDTO loanDTO) throws ParseException{
-        Loans loan = modelMapper.map(loanDTO, Loans.class);
-        if (loanDTO.getId() != null){
-            Loans oldLoan = loansService.getLoanById(loanDTO.getId());
-            loan.setId(oldLoan.getId());
-        }
-        return loan;
-    }
+//    @GetMapping
+//    @ResponseBody
+//    public List<LoanDTO> getLoans(){
+//        List<Loans> loans = loansService.getLoans();
+//        return loans.stream()
+//                .map(this::convertToDTO)
+//                .collect(Collectors.toList());
+//    }
+//
+//    private LoanDTO convertToDTO(Loans loan){
+//        return modelMapper.map(loan, LoanDTO.class);
+//    }
+//
+//    private Loans convertToEntity(LoanDTO loanDTO) throws ParseException{
+//        Loans loan = modelMapper.map(loanDTO, Loans.class);
+//        if (loanDTO.getId() != null){
+//            Loans oldLoan = loansService.getLoanById(loanDTO.getId());
+//            loan.setId(oldLoan.getId());
+//        }
+//        return loan;
+//    }
 }

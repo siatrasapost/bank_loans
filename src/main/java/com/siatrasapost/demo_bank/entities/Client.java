@@ -1,5 +1,7 @@
 package com.siatrasapost.demo_bank.entities;
 
+import com.siatrasapost.demo_bank.dtos.ClientDTO;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -32,6 +34,32 @@ public class Client {
     private List<Loans> loans;
 
     public Client(){}
+
+    public Client(Long id, String full_name, String nationality, String gender, LocalDate birth_date, Integer annual_income, Integer balance, String username, String password, String role) {
+        this.id = id;
+        this.full_name = full_name;
+        this.nationality = nationality;
+        this.gender = gender;
+        this.birth_date = birth_date;
+        this.annual_income = annual_income;
+        this.balance = balance;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    public Client(ClientDTO clientDTO){
+        this.id = clientDTO.id();
+        this.full_name = clientDTO.full_name();
+        this.nationality = clientDTO.nationality();
+        this.gender = clientDTO.gender();
+        this.birth_date = clientDTO.birth_date();
+        this.annual_income = clientDTO.annual_income();
+        this.balance = clientDTO.balance();
+        this.username = clientDTO.username();
+        this.password = clientDTO.password();
+        this.role = clientDTO.role();
+    }
 
     public Long getId() {
         return id;
