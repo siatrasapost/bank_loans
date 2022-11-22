@@ -3,13 +3,13 @@ package com.siatrasapost.demo_bank.services;
 import com.siatrasapost.demo_bank.dtos.ClientDTO;
 import com.siatrasapost.demo_bank.entities.Client;
 import com.siatrasapost.demo_bank.repositories.ClientRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -26,6 +26,8 @@ public class ClientService {
     public List<Client> getClients(){
         return clientRepository.findAll();
     }
+
+    public ClientDTO getOneClient(Long clientId){return ClientDTO.singleClientDto(clientRepository.findById(clientId));}
 
     public void deleteClientById(Long clientId) {
         this.clientRepository.deleteById(clientId);
