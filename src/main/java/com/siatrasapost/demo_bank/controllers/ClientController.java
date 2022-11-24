@@ -1,14 +1,12 @@
 package com.siatrasapost.demo_bank.controllers;
 
-import com.siatrasapost.demo_bank.dtos.ClientDTO;
-import com.siatrasapost.demo_bank.entities.Client;
+import com.siatrasapost.demo_bank.dtos.GetClientDTO;
+import com.siatrasapost.demo_bank.dtos.RegisterClientDTO;
 import com.siatrasapost.demo_bank.services.ClientService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/user")
@@ -20,25 +18,28 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @GetMapping
-    public List<Client> getClients(){
+    @GetMapping("/")
+    public List<GetClientDTO> getClients(){
         return clientService.getClients();
     }
 
     @GetMapping(path = "/{clientId}")
-    public ClientDTO getClientProfile(@PathVariable Long clientId){return clientService.getOneClient(clientId);}
+    public GetClientDTO getClient(@PathVariable Long clientId){
+        return clientService.getClient(clientId);
+    }
 
-    @PostMapping(path = "/create")
-    public ClientDTO registerNewClient(@RequestBody @Validated ClientDTO newClient){return clientService.setClient(newClient);}
+    @PostMapping(path = "/")
+    public void createClient(@RequestBody @Validated RegisterClientDTO newClient){
+        clientService.createClient(newClient);
+    }
 
-    @PutMapping(path = "/update/{clientId}")
-    public void updateClient(
-        @PathVariable("clientId") Long clientId,
-        @RequestParam(required = false) String name
-    ){}
+    @PatchMapping(path = "/{clientId}")
+    public GetClientDTO updateClient(@PathVariable("clientId") Long clientId, @RequestBody RegisterClientDTO registerClientDTO) {
+        return clientService.updateClient(clientId, registerClientDTO);
+    }
 
     @DeleteMapping("/{clientId}")
     public void deleteClient(@PathVariable Long clientId){
-        clientService.deleteClientById(clientId);
+        clientService.deleteClient(clientId);
     }
 }

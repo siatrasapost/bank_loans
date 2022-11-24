@@ -1,6 +1,7 @@
 package com.siatrasapost.demo_bank.entities;
 
-import com.siatrasapost.demo_bank.dtos.ClientDTO;
+import com.siatrasapost.demo_bank.dtos.GetClientDTO;
+import com.siatrasapost.demo_bank.enums.Role;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -46,19 +47,6 @@ public class Client {
         this.username = username;
         this.password = password;
         this.role = role;
-    }
-
-    public Client(ClientDTO clientDTO){
-        this.id = clientDTO.id();
-        this.full_name = clientDTO.full_name();
-        this.nationality = clientDTO.nationality();
-        this.gender = clientDTO.gender();
-        this.birth_date = clientDTO.birth_date();
-        this.annual_income = clientDTO.annual_income();
-        this.balance = clientDTO.balance();
-        this.username = clientDTO.username();
-        this.password = clientDTO.password();
-        this.role = clientDTO.role();
     }
 
     public Long getId() {
